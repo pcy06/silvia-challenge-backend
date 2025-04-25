@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum GameStatus {
+  ACTIVE
+  HIDDEN
+}
+
+enum GamePaywall {
+  FREE
+  PREMIUM
+}
+
+enum GameIntensity {
+  EASY
+  NORMAL
+  HARD
+}
+
+model Skill {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  games       Game[]
+}
+
+model Game {
+  id             String        @id @default(uuid())
+  gameId         String        @unique
+  name           String
+  description    String
+  iconUrl        String
+  coverUrl       String
+  playDuration   Int
+  relatedSkill   Skill         @relation(fields: [relatedSkillId], references: [id])
+  relatedSkillId String
+  intensity      GameIntensity @default(EASY)
+  paywall        GamePaywall   @default(FREE)
+  status         GameStatus    @default(ACTIVE)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime?     @updatedAt
+}

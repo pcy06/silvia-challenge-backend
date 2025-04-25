@@ -1,0 +1,31 @@
+# 버전 관리 시스템
+.git
+.gitignore
+
+# 노드 모듈 및 로그
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# 빌드 산출물
+dist
+build
+
+# 환경 설정 (프로덕션 환경에서는 환경 변수로 설정)
+.env
+.env.*
+!.env.example
+
+# 개발 관련 파일
+README.md
+docker-compose.yml
+.dockerignore
+.vscode
+.idea
+*.md
+*.log
+
+# 테스트 파일
+test
+coverage 

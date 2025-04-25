@@ -1,0 +1,13 @@
+scalar DateTime
+
+schema {
+  query: Query
+}
+
+type Query {
+  # Game
+  games: [Game]!
+  game(id: ID!): Game!
+}
+
+

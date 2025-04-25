@@ -1,0 +1,16 @@
+type Skill {
+  # 데이터베이스상 능력 고유 ID
+  id: ID!
+
+  # 능력 이름
+  name: String!
+
+  # 능력 설명
+  description: String!
+
+  # 능력 생성일
+  createdAt: DateTime!
+
+  # 능력 수정일
+  updatedAt: DateTime!
+}

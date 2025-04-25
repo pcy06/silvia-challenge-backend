@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:fghvghcfytygu3r24g32@postgres:5432/silvia-challenge?schema=public
+      - NODE_ENV=production
+      - PORT=3000
+    restart: always
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=fghvghcfytygu3r24g32
+      - POSTGRES_DB=silvia-challenge
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./dummy.sql:/docker-entrypoint-initdb.d/dummy.sql
+    restart: always
+
+volumes:
+  postgres_data: 

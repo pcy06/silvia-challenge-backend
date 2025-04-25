@@ -1,0 +1,42 @@
+enum GameStatus {
+  # 게임 활성화
+  ACTIVE
+
+  # 게임 비활성화
+  HIDDEN
+}
+
+type Game {
+  # 데이터베이스상 게임 고유 ID
+  id: ID!
+
+  # 프론트엔드에 내장된 게임 고유 ID
+  gameId: String!
+
+  # 게임 이름
+  name: String!
+
+  # 게임 설명
+  description: String!
+
+  # 게임 아이콘 URL
+  iconUrl: String!
+
+  # 게임 상세 커버 이미지 URL
+  coverUrl: String!
+
+  # 게임 플레이 소요시간 (초 단위)
+  playDuration: Int!
+
+  # 게임 관련 능력
+  relatedSkill: Skill!
+
+  # 게임 노출 상태
+  status: GameStatus!
+
+  # 게임 생성일
+  createdAt: DateTime!
+
+  # 게임 수정일
+  updatedAt: DateTime!
+} 
